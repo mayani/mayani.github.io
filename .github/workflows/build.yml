@@ -1,6 +1,6 @@
 name: Build and deploy PegasusHub Jekyll site to GitHub Pages
 
-on: push:
+on: push
 
 jobs:
   github-pages:
