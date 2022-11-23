@@ -1,0 +1,18 @@
+title: Test SubPath
+tagline: The Community Together
+
+collections:
+  workflows:
+    output: true
+    permalink: /:collection/:name
+
+markdown: kramdown
+
+exclude:
+  - scripts
+
+plugins:
+  - jekyll-sitemap    # Adds sitemap to the website at /sitemap.xml
+  - jekyll-feed       # Adds feed to the website at /feed.xml
+  - jekyll-paginate   # Used for sorting posts by page numbers.
+  - jekyll-seo-tag    # Adds all the important SEO meta tags by default.
