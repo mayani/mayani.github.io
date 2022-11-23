@@ -1,0 +1,35 @@
+name: Build and deploy PegasusHub Jekyll site to GitHub Pages
+
+on: push:
+
+jobs:
+  github-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Dump GitHub context
+        id: github_context_step
+        run: echo '${{ toJSON(github) }}'
+
+      - name: Get Sub Path
+        id: get-sub-path
+        shell: bash
+        run: |
+          REF="${{ github.ref}}"
+          NAME=$(basename $REF)
+          TYPE=$(basename $(dirname $REF))
+          if [ $TYPE == 'heads' ]; then
+              NAME=${NAME}dev
+          elif [ $TYPE == 'tags' ]; then
+              NAME=$NAME
+          else
+              NAME=''
+          fi
+          echo "SUB_PATH=$NAME" >> $GITHUB_OUTPUT
+        
+      - uses: helaili/jekyll-action@v2
+        with:
+          token: ${{ secrets.JEKYLL_PAT }}
+          target_branch: 'gh-pages'
+          target_path: docs/${{ steps.get-sub-path.outputs.SUB_PATH }}
