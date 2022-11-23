@@ -8,10 +8,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Dump GitHub context
-        id: github_context_step
-        run: echo '${{ toJSON(github) }}'
-
       - name: Get Sub Path
         id: get-sub-path
         shell: bash
