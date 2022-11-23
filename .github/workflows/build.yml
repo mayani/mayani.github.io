@@ -30,6 +30,6 @@ jobs:
         
       - uses: helaili/jekyll-action@v2
         with:
-          token: ${{ secrets.JEKYLL_PAT }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           target_branch: 'gh-pages'
           target_path: docs/${{ steps.get-sub-path.outputs.SUB_PATH }}
